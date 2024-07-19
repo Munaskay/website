@@ -1,6 +1,5 @@
 import express from 'express';
-import fs from 'fs';
-import db from '../../db.json';
+import { db } from '../db';
 
 
 const router = express.Router();
@@ -9,47 +8,54 @@ router.get('/', (req, res) => {
   res.json(['😀', '😳', '🙄']);
 });
 
-router.post('/login', (req, res) => {
-  let database = db as any;
+router.post('/login', async (req, res) => {
   
-  if (database[req.body.userEmail]) {
+  // SELECT * from user where email = 'sosari@asd.com';
+  const user = await db.user.findFirst({
+    where: {
+      email: req.body.userEmail,
+    },
+  });
+
+  if (user) {
     res.json({
       error: false,
-      data: database[req.body.userEmail],
+      data: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+      },
     });
   } else {
     res.json({
       error: true,
-      message: 'El correo o contraseña es invalido',
+      message: 'correo o contraseña invalida',
     });
   }
 
 });
 
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
   
-  let database = db as any;
+  const user = await db.user.create({
+    data: {
+      email: req.body.userEmail,
+      name: req.body.userEmail.split('@')[0],
+      password: req.body.userEmail,
+    },
+  });
 
-  if (database[req.body.userEmail]) {
-    res.json({
-      error: true,
-      message: 'ya existe es correo',
-    });
-  } else {
-    database[req.body.userEmail] = {
-      password: req.body.userPassword,
-      verify: false,
-    };
-  }
-
-  console.log(db);
+  // INSERT INTO users(email, password, name) values('sasori@asdas.com', 'asdasdas', 'sasori');
   
 
-  fs.writeFileSync('./db.json', JSON.stringify(database, null, 2));
   res.json({
     error: false,
-    message: 'Registrado correctamente',
+    data: {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+    },
   });
 
 });
