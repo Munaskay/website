@@ -1,0 +1,43 @@
+body {
+    background: linear-gradient(to right, #ff99cc, #cc99ff); /* Degradado de rosa a morado */
+}
+
+.container {
+    background-color: #c2ff99;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+h1 {
+    color: #007bff;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+label {
+    color: #333;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.form-group .radio-inline input {
+    margin-top: -2px;
+}
+
+textarea.form-control {
+    resize: none;
+}
+

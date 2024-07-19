@@ -1,0 +1,14 @@
+{
+  "admin@munaskay": {
+    "password": "asdasdas",
+    "verify": true
+  },
+  "asdasd@asdas.com": {
+    "password": "asdasdasd",
+    "verify": false
+  },
+  "dev@kamerrezz.com": {
+    "password": "12345",
+    "verify": false
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "liveServer.settings.port": 5501,
+    "github.copilot.chat.useProjectTemplates": true,
+    "git.autofetch": false,
+    "git.enabled": true
+}
